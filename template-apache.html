@@ -37,6 +37,7 @@
 
         a.file {
             background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAABnRSTlMAAAAAAABupgeRAAABHUlEQVR42o2RMW7DIBiF3498iHRJD5JKHurL+CRVBp+i2T16tTynF2gO0KSb5ZrBBl4HHDBuK/WXACH4eO9/CAAAbdvijzLGNE1TVZXfZuHg6XCAQESAZXbOKaXO57eiKG6ft9PrKQIkCQqFoIiQFBGlFIB5nvM8t9aOX2Nd18oDzjnPgCDpn/BH4zh2XZdlWVmWiUK4IgCBoFMUz9eP6zRN75cLgEQhcmTQIbl72O0f9865qLAAsURAAgKBJKEtgLXWvyjLuFsThCSstb8rBCaAQhDYWgIZ7myM+TUBjDHrHlZcbMYYk34cN0YSLcgS+wL0fe9TXDMbY33fR2AYBvyQ8L0Gk8MwREBrTfKe4TpTzwhArXWi8HI84h/1DfwI5mhxJamFAAAAAElFTkSuQmCC ") left top no-repeat;
+           cursor: pointer;
         }
 
         a.dir {
@@ -90,19 +91,20 @@
     <tbody id="tbody">
     {{each files}}
     <tr>
-        <td data-value="apple/">
+        <td >
             {{if $value.isFile}}
-            <a class="icon file">
+            <a class="icon file" href="http://localhost:3000{{$value.currentPath}}">
                 {{$value.fileName}}
             </a>
             {{else}}
-            <a class="icon dir" href="{{$value.currentPath}}">
+            <a class="icon dir" href="http://localhost:3000{{$value.currentPath}}">
                 {{$value.fileName}}
             </a>
             {{/if}}
         </td>
         <td class="detailsColumn" data-value="0"></td>
         <td class="detailsColumn" data-value="1509589967">2017/11/2 上午10:32:47</td>
+        <!--<h1>{{$value.currentPath}}</h1>-->
     </tr>
     {{/each}}
     </tbody>
