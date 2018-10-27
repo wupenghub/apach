@@ -24,7 +24,8 @@ server.on('request', function (request, response) {
             } else {
                 fs.readdir(dir, function (err, files) {
                     var fileInfos = [];
-                    if (err) {
+                    console.log("files:"+files);
+                    if (err ||files.length == 0 ) {
                         response.setHeader("Content-Type", "text/plain;charset=utf-8");
                         return response.end('没有更多文件了。。。');
                     }
