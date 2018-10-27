@@ -2,6 +2,7 @@ var http = require('http');
 var server = http.createServer();
 var fs = require('fs');
 var artTemplate = require('art-template');
+var moment = require('moment');
 server.on('request', function (request, response) {
     var dir = 'D:/www';
     dir += request.url;
@@ -24,8 +25,8 @@ server.on('request', function (request, response) {
             } else {
                 fs.readdir(dir, function (err, files) {
                     var fileInfos = [];
-                    console.log("files:"+files);
-                    if (err ||files.length == 0 ) {
+                    console.log("files:" + files);
+                    if (err || files.length == 0) {
                         response.setHeader("Content-Type", "text/plain;charset=utf-8");
                         return response.end('没有更多文件了。。。');
                     }
@@ -33,6 +34,7 @@ server.on('request', function (request, response) {
                         var fileInfo = {};
                         fileInfo.fileName = item;
                         fileInfo.isFile = fs.statSync(dir + '/' + item).isFile();
+                        fileInfo.createTime = moment(new Date(fs.statSync(dir + '/' + item).mtime)).format('YYYY-MM-DD HH:mm:ss');
                         fileInfo.currentPath = (request.url + '/' + item);
                         fileInfos.push(fileInfo);
                     });
